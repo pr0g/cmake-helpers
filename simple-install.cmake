@@ -1,4 +1,10 @@
-function(install_header_only)
+include(GNUInstallDirs)
+
+function(include_and_install_header_only)
+    target_include_directories(
+        ${ARGV0}
+        INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+                  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
     install(
         TARGETS ${ARGV0}
         EXPORT ${ARGV0}-config)
