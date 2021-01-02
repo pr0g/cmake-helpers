@@ -8,7 +8,7 @@
 
 To use `cmake-helpers`, CMake's FetchContent is required.
 
-Add this to you `CMakeLists.txt` file:
+Add this to your `CMakeLists.txt` file:
 
 ```cmake
 include(FetchContent)
