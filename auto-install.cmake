@@ -5,7 +5,7 @@
 #    step from the application folder to have these operations execute.
 function(install_it)
     execute_process(
-        COMMAND cmake -S . -B build
+        COMMAND cmake -S . -B build -DCMAKE_INSTALL_PREFIX=./install
         WORKING_DIRECTORY ${ARGV0})
     execute_process(
         COMMAND cmake --build build --target install
