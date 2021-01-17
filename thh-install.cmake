@@ -25,7 +25,7 @@ function(thh_internal_install_config_simple project_name config_name)
     install(
         EXPORT ${config_name}-config
         NAMESPACE ${project_name}::
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${project_name})
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${config_name})
 endfunction()
 
 # Specify the target to install and set the export name
@@ -44,14 +44,16 @@ function(thh_internal_install_config_advanced project_name config_name)
         EXPORT ${config_name}-config
         NAMESPACE ${project_name}::
         FILE ${config_name}-targets.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${project_name})
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${config_name})
 endfunction()
 
 # Install the user-defined config file
 function(thh_internal_install_config_file project_name config_name)
+    configure_file(
+        ${config_name}-config.cmake.in ${config_name}-config.cmake @ONLY)
     install(
-        FILES ${config_name}-config.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${project_name})
+        FILES "${CMAKE_CURRENT_BINARY_DIR}/${config_name}-config.cmake"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${config_name})
 endfunction()
 
 # Install for header-only libraries with no dependencies
