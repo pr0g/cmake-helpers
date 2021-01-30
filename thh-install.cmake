@@ -48,7 +48,7 @@ function(thh_internal_install_config_advanced project_name config_name)
 endfunction()
 
 # Install the user-defined config file
-function(thh_internal_install_config_file project_name config_name)
+function(thh_internal_install_config_file config_name)
     configure_file(
         ${config_name}-config.cmake.in ${config_name}-config.cmake @ONLY)
     install(
@@ -82,7 +82,7 @@ function(thh_install_header_only_with_dependencies project_name config_name)
     thh_internal_install_include_files(${project_name})
     thh_internal_install_header_only_export(${project_name} ${config_name})
     thh_internal_install_config_advanced(${project_name} ${config_name})
-    thh_internal_install_config_file(${project_name} ${config_name})
+    thh_internal_install_config_file(${config_name})
 endfunction()
 
 # Install for static libraries with dependencies
@@ -93,5 +93,5 @@ function(thh_install_static_with_dependencies project_name config_name)
     thh_internal_install_include_files(${project_name})
     thh_internal_install_static_export(${project_name} ${config_name})
     thh_internal_install_config_advanced(${project_name} ${config_name})
-    thh_internal_install_config_file(${project_name} ${config_name})
+    thh_internal_install_config_file(${config_name})
 endfunction()
